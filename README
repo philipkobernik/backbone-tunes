@@ -1,0 +1,20 @@
+Backbone Tunes:
+
+This is the simple music player application I created by following Peepcode's BackboneJS screencasts.
+
+Tasks I completed outside of the tutorial instructions:
+
+ * Added ability to click on tracks directly and queue them up
+
+
+USAGE
+=====
+
+Run:
+
+    rake server
+
+Visit the webserver at:
+
+    http://localhost:9292
+
