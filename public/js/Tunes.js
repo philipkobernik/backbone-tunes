@@ -149,7 +149,7 @@
     window.PlaylistAlbumView = AlbumView.extend({
       events: {
         'click .queue.remove': 'removeFromPlaylist',
-        'click li': 'goToTrack'
+        'click li>a': 'goToTrack'
       },
 
       initialize: function() {
@@ -186,7 +186,7 @@
           // stop player and reset album & track if currently playing album is removed
           this.player.set({currentAlbumIndex:0, currentTrackIndex:0, state:'stop'});
         }else if(this.playlist.indexOf(this.model) < this.playlist.indexOf(this.player.currentAlbum())){
-          // adjust the 'currentAlbumIndex' state attribute on player to reflect its changed position in the playlist array
+          // decrement the 'currentAlbumIndex' attribute on player to reflect its changed position in the playlist array
           this.player.attributes.currentAlbumIndex -= 1;
         }
 
@@ -194,11 +194,12 @@
       },
 
       goToTrack: function(event) {
+        console.log(event.target);
         var target = $(event.target).parent();
 
         // looking to dom to find index of clicked track? subject to break if markup changes.
         // this is against backbones MVC pattern. fix it.
-        trackIndex = $(target).parents('ol').children().index(target);
+        trackIndex = target.parents('ol').children().index(target);
 
         albumIndex = this.playlist.indexOf(this.model);
 
